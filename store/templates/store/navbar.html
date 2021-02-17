@@ -1,0 +1,80 @@
+{% load static %}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        {% if user.is_authenticated %}
+            <div id="mySidenav" class="sidenav">
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+              <a href="/my_account/">My Account</a>
+              <a href="/my_orders/?users_id={{ user.id }}">My Orders</a>
+              <a href="{% url 'logout' %}">Logout</a>
+
+            </div>
+
+
+            <!-- Use any element to open the sidenav -->
+            <span style="color: rgb(255, 255, 255);font-size:30px;cursor:pointer" onclick="openNav()">&#9776;&nbsp;</span>
+
+          <a class="navbar-brand" href="{% url 'store' %}">Trendy</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'store' %}">Store <span class="sr-only">(current)</span></a>
+              </li>
+            </ul>
+
+            <div class="form-inline my-2 my-lg-0">
+
+                <a href="{% url 'cart' %}">
+                    <img  id="cart-icon" src="{% static 'images/cart.png' %}">
+                </a>
+                <p id="cart-total">{{cartItems}}</p>
+            </div>
+
+          </div>
+        {% else %}
+            <div id="mySidenav" class="sidenav">
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+              <a href="{% url 'login' %}">Log In</a>
+              <a href="{% url 'signup' %}">Sign Up</a>
+            </div>
+
+            <!-- Use any element to open the sidenav -->
+            <span style="color: rgb(255, 255, 255);font-size:30px;cursor:pointer" onclick="openNav()">&#9776;&nbsp;</span>
+
+          <a class="navbar-brand" href="{% url 'store' %}">Trendy</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+            <span class="navbar-toggler-icon"></span>
+
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'store' %}">Store <span class="sr-only">(current)</span></a>
+              </li>
+            </ul>
+
+            <div class="form-inline my-2 my-lg-0">
+                <a href="{% url 'login' %}" class="btn btn-warning">Login</a>
+
+                <a href="{% url 'cart' %}">
+                    <img  id="cart-icon" src="{% static 'images/cart.png' %}">
+                </a>
+                <p id="cart-total">{{cartItems}}</p>
+            </div>
+
+          </div>
+        {% endif %}
+    </nav>
+
